@@ -1,0 +1,6 @@
+framework module Pods_SnippetB {
+  umbrella header "Pods-SnippetB-umbrella.h"
+
+  export *
+  module * { export * }
+}
