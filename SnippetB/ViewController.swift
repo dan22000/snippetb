@@ -19,7 +19,6 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        keychain.accessGroup = "com.wohlmuth.snippet.b.SnippetB.User"
         if let userName = keychain.get("userName"),
             let password = keychain.get("password") {
             
@@ -34,5 +33,7 @@ class ViewController: UIViewController {
 
         keychain.set(userName, forKey: "userName")
         keychain.set(password, forKey: "password")
+        
+        print("Stored user and password in Keychain.")
     }
 }
