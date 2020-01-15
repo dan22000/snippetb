@@ -7,14 +7,32 @@
 //
 
 import UIKit
+import KeychainSwift
 
 class ViewController: UIViewController {
+    
+    @IBOutlet weak var userNameTextField: UITextField!
+    @IBOutlet weak var passwordTextField: UITextField!
+    
+    let keychain = KeychainSwift()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+
+        keychain.accessGroup = "com.wohlmuth.snippet.b.SnippetB.User"
+        if let userName = keychain.get("userName"),
+            let password = keychain.get("password") {
+            
+            userNameTextField.text = userName
+            passwordTextField.text = password
+        }
     }
 
+    @IBAction func savePassword(_ sender: Any) {
+        guard let userName = self.userNameTextField.text,
+            let password = self.passwordTextField.text else { return }
 
+        keychain.set(userName, forKey: "userName")
+        keychain.set(password, forKey: "password")
+    }
 }
-
