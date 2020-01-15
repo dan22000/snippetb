@@ -19,6 +19,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        // If userName and password already exists in Keychain, set it as default value in TextField.
         if let userName = keychain.get("userName"),
             let password = keychain.get("password") {
             
